@@ -1,0 +1,23 @@
+name: CI
+
+on: [push]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - run: npm install pnpm -g
+
+      - name: Install Packages
+        run: pnpm i
+
+      - name: Check Lint
+        run: pnpm lint
+
+      - name: Check Buld
+        run: pnpm build
+
